@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import api from "../utils/Api";
+import Card from "./Card";
 
 function Main(props) {
 
     const [userName, setUserName] = useState();
     const [userDescription, setUserDescription] = useState();
     const [userAvatar, setUserAvatar] = useState();
+    const [cards, setCards] = useState([]);
 
     useEffect(() =>  {
         Promise.all([api.getUserInformation(), api.getInitialCards()])
@@ -14,6 +16,8 @@ function Main(props) {
             setUserAvatar(result[0].avatar)
             setUserName(result[0].name)
             setUserDescription(result[0].about)
+            console.log(result[1])
+            setCards(result[1])
         })
         .catch(err => console.log(`Ошибка получения информации${err}`));
           
@@ -35,7 +39,8 @@ function Main(props) {
         </section>
         
         <section className="elements">
-        
+        {/* {cards.map(() => <Card />)} */}
+        {cards.map(item => <Card key={item.id} {...item} />)}
         </section>
         </main>
     );
