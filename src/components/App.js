@@ -25,6 +25,12 @@ function App() {
         setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
     };
 
+    function closeAllPopups() {
+        setIsEditAvatarPopupOpen(false);
+        setIsEditProfilePopupOpen(false);
+        setIsAddPlacePopupOpen(false);
+    };
+
     return (
         <body className="page">
             <div className="page__container">
@@ -38,7 +44,7 @@ function App() {
                 />
                 <Footer />
                 <ImagePopup />
-                <PopupWithForm name="edit-profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen}
+                <PopupWithForm name="edit-profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}
                     children={<>
                         <label className="popup__input-label" for="name-input">
                             <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minlength="2"  maxlength="40" required />
@@ -52,7 +58,7 @@ function App() {
                     </>} 
                 />
 
-                <PopupWithForm name="add-photo" title="Новое место" isOpen={isAddPlacePopupOpen}
+                <PopupWithForm name="add-photo" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
                     children={<>
                         <label className="popup__input-label" for="place-input">
                             <input id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minlength="2"  maxlength="30" required />
@@ -67,7 +73,7 @@ function App() {
                     </>} 
                 />
 
-                <PopupWithForm name="update-avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen}
+                <PopupWithForm name="update-avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
                     children={<>
                         <label className="popup__input-label" for="avatar-input">
                             <input id='avatar-input' className="popup__input popup__input_type_avatar-photo" type="url" name="avatar" placeholder="Ссылка на аватарку" required />
