@@ -3,12 +3,10 @@ import api from "../utils/Api";
 import Card from "./Card";
 
 function Main(props) {
-
     const [userName, setUserName] = useState();
     const [userDescription, setUserDescription] = useState();
     const [userAvatar, setUserAvatar] = useState();
     const [cards, setCards] = useState([]);
-
     useEffect(() =>  {
         Promise.all([api.getUserInformation(), api.getInitialCards()])
         .then((result) =>{
@@ -22,7 +20,6 @@ function Main(props) {
         .catch(err => console.log(`Ошибка получения информации${err}`));
           
     },[]);
-
     return (
         <main className="content">
         <section className="profile">
@@ -37,10 +34,8 @@ function Main(props) {
             </div>
             <button onClick={props.onAddPlace} className="profile__add-button" type="button"></button>
         </section>
-        
         <section className="elements">
-        {/* {cards.map(() => <Card />)} */}
-        {cards.map(item => <Card key={item.id} {...item} />)}
+        {cards.map(item => <Card key={item._id} card={item} onCardClick={props.onCardClick} />)}
         </section>
         </main>
     );

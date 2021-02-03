@@ -8,51 +8,54 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import { useEffect, useState } from 'react';
 // import api from "../utils/Api.js";
+import Card from "./Card";
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-
+    const [isBigPhotoPopupOpen, setIsBigPhotoPopupOpen] = useState(false);
+    const [selectedCard, setSelectedCard] = useState({});
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen)
     };
-
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(!isEditProfilePopupOpen)
     };
-
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
     };
-
+    function handleCardClick(card) {
+        setSelectedCard(card);
+        setIsBigPhotoPopupOpen(true);
+    };
     function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
+        setIsBigPhotoPopupOpen(false);
+        setSelectedCard({});
     };
-
     return (
         <body className="page">
             <div className="page__container">
                 <Header />
                 <Main
-                    onEditAvatar={handleEditAvatarClick}
-                                        
-                    onEditProfile={handleEditProfileClick}
-                                    
+                    onEditAvatar={handleEditAvatarClick}                 
+                    onEditProfile={handleEditProfileClick}        
                     onAddPlace={handleAddPlaceClick}
+                    onCardClick={handleCardClick}
                 />
                 <Footer />
-                <ImagePopup />
+                <ImagePopup card={selectedCard} onClose={closeAllPopups} isOpen={isBigPhotoPopupOpen} />
                 <PopupWithForm name="edit-profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}
                     children={<>
                         <label className="popup__input-label" for="name-input">
-                            <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minlength="2"  maxlength="40" required />
+                            <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required />
                             <span id="name-input-error" className="popup__input-error"></span>
                         </label>
                         <label className="popup__input-label" for="occupation-input">
-                            <input id='occupation-input' className="popup__input popup__input_type_title" type="text" name="occupation" minlength="2"  maxlength="200" required />
+                            <input id='occupation-input' className="popup__input popup__input_type_title" type="text" name="occupation" minLength="2"  maxLength="200" required />
                             <span id="occupation-input-error" className="popup__input-error"></span>
                         </label>
                         <button type="submit" className="popup__save popup__save_type_edit" value="Сохранить">Сохранить</button>
@@ -62,7 +65,7 @@ function App() {
                 <PopupWithForm name="add-photo" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
                     children={<>
                         <label className="popup__input-label" for="place-input">
-                            <input id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minlength="2"  maxlength="30" required />
+                            <input id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minLength="2"  maxLength="30" required />
                             <span id="place-input-error" className="popup__input-error"></span>
                         </label>
                     
