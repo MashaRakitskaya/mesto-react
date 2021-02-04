@@ -17,26 +17,41 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isBigPhotoPopupOpen, setIsBigPhotoPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({});
+    // function handleEditAvatarClick() {
+    //     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen)
+    // };
+    // function handleEditProfileClick() {
+    //     setIsEditProfilePopupOpen(!isEditProfilePopupOpen)
+    // };
+    // function handleAddPlaceClick() {
+    //     setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
+    // };
     function handleEditAvatarClick() {
-        setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen)
+        setIsEditAvatarPopupOpen(true)
     };
     function handleEditProfileClick() {
-        setIsEditProfilePopupOpen(!isEditProfilePopupOpen)
+        setIsEditProfilePopupOpen(true)
     };
     function handleAddPlaceClick() {
-        setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
+        setIsAddPlacePopupOpen(true)
     };
     function handleCardClick(card) {
         setSelectedCard(card);
         setIsBigPhotoPopupOpen(true);
     };
-    export function closeAllPopups() {
+    function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
         setIsBigPhotoPopupOpen(false);
         setSelectedCard({});
     };
+
+    // function handleByOverlayClose(event) {
+    //     if (event.target.classList.contains('popup')) {
+    //         closeAllPopups()
+    //     }
+    // };
 
     return (
         <body className="page">
@@ -49,8 +64,16 @@ function App() {
                     onCardClick={handleCardClick}
                 />
                 <Footer />
-                <ImagePopup card={selectedCard} onClose={closeAllPopups} isOpen={isBigPhotoPopupOpen} />
-                <PopupWithForm name="edit-profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}
+                <ImagePopup
+                    card={selectedCard}
+                    onClose={closeAllPopups}
+                    isOpen={isBigPhotoPopupOpen}
+                />
+                <PopupWithForm name="edit-profile"
+                    title="Редактировать профиль"
+                    isOpen={isEditProfilePopupOpen}
+                    onClose={closeAllPopups}
+                    // onEscClose={}
                     children={<>
                         <label className="popup__input-label" for="name-input">
                             <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required />
@@ -64,7 +87,11 @@ function App() {
                     </>} 
                 />
 
-                <PopupWithForm name="add-photo" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
+                <PopupWithForm 
+                    name="add-photo"
+                    title="Новое место"
+                    isOpen={isAddPlacePopupOpen}
+                    onClose={closeAllPopups}
                     children={<>
                         <label className="popup__input-label" for="place-input">
                             <input id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minLength="2"  maxLength="30" required />
@@ -79,7 +106,11 @@ function App() {
                     </>} 
                 />
 
-                <PopupWithForm name="update-avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
+                <PopupWithForm
+                    name="update-avatar"
+                    title="Обновить аватар"
+                    isOpen={isEditAvatarPopupOpen}
+                    onClose={closeAllPopups}
                     children={<>
                         <label className="popup__input-label" for="avatar-input">
                             <input id='avatar-input' className="popup__input popup__input_type_avatar-photo" type="url" name="avatar" placeholder="Ссылка на аватарку" required />
@@ -89,7 +120,9 @@ function App() {
                     </>}
                 />
 
-                <PopupWithForm name="deleteСard" title="Вы уверены?" 
+                <PopupWithForm 
+                    name="deleteСard"
+                    title="Вы уверены?" 
                     children={<>
                         <button type="submit" className="popup__save popup__save_type_deleteСard">Да</button>
                     </>}

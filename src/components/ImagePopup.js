@@ -1,19 +1,18 @@
 import { useEffect } from 'react';
-import { closeAllPopups } from "./App";
+const escape = 27;
 function ImagePopup(props) {
-    useEffect(
-        () => {
-            function handleEscClose(event) {
-                if (event.keyCode == escape) {
-                 closeAllPopups
-                }  
-            };
-        }
-    )
-
+    // useEffect(
+    //     () => {
+    //         function handleEscClose(event) {
+    //             if (event.keyCode == escape) {
+    //                 onClick={props.onClose}
+    //             }  
+    //         };
+    //     }
+    // )
     
     return(
-        <div className={`popup popup_type_big-photo ${props.isOpen ? 'popup_opened' : ''}`} onClick={handleEscClose}>
+        <div className={`popup popup_type_big-photo ${props.isOpen ? 'popup_opened' : ''}`}>
             <div className="popup__content-photo">
                 <button className="popup__close popup__close_type_close-big-foto" type="button" onClick={props.onClose}></button>
                 <img  className="popup__photo" src={props.card.link} alt={props.card.name} />
