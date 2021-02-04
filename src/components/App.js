@@ -8,8 +8,6 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 // import { useEffect, useState } from 'react';
 import { useState } from 'react';
-// import api from "../utils/Api.js";
-// import Card from "./Card";
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
