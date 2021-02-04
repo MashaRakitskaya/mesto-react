@@ -31,16 +31,13 @@ function App() {
         setIsBigPhotoPopupOpen(false);
         setSelectedCard({});
     };
-    function closeByOverlay() { 
-        const handleByOverlayClose = (event) =>{
-            if (event.target.classList.contains('popup')) {
-                closeAllPopups()
-            }
+    function closeByOverlay(event) { 
+        if (event.target.classList.contains('popup')) {
+            closeAllPopups()
         }
-        document.addEventListener('click', handleByOverlayClose)
     };
     return (
-        <body className="page">
+        <div className="page">
             <div className="page__container">
                 <Header />
                 <Main
@@ -116,7 +113,7 @@ function App() {
 
             </div>
 
-        </body>
+        </div>
     );
 }
 
