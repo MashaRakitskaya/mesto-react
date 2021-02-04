@@ -17,15 +17,6 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isBigPhotoPopupOpen, setIsBigPhotoPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({});
-    // function handleEditAvatarClick() {
-    //     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen)
-    // };
-    // function handleEditProfileClick() {
-    //     setIsEditProfilePopupOpen(!isEditProfilePopupOpen)
-    // };
-    // function handleAddPlaceClick() {
-    //     setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
-    // };
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true)
     };
@@ -46,13 +37,14 @@ function App() {
         setIsBigPhotoPopupOpen(false);
         setSelectedCard({});
     };
-
-    // function handleByOverlayClose(event) {
-    //     if (event.target.classList.contains('popup')) {
-    //         closeAllPopups()
-    //     }
-    // };
-
+    function closeByOverlay() { 
+        const handleByOverlayClose = (event) =>{
+            if (event.target.classList.contains('popup')) {
+                closeAllPopups()
+            }
+        }
+        document.addEventListener('click', handleByOverlayClose)
+    };
     return (
         <body className="page">
             <div className="page__container">
@@ -68,12 +60,13 @@ function App() {
                     card={selectedCard}
                     onClose={closeAllPopups}
                     isOpen={isBigPhotoPopupOpen}
+                    onOvarlayClose={closeByOverlay}
                 />
                 <PopupWithForm name="edit-profile"
                     title="Редактировать профиль"
                     isOpen={isEditProfilePopupOpen}
                     onClose={closeAllPopups}
-                    // onEscClose={}
+                    onOvarlayClose={closeByOverlay}
                     children={<>
                         <label className="popup__input-label" for="name-input">
                             <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required />
@@ -86,12 +79,12 @@ function App() {
                         <button type="submit" className="popup__save popup__save_type_edit" value="Сохранить">Сохранить</button>
                     </>} 
                 />
-
                 <PopupWithForm 
                     name="add-photo"
                     title="Новое место"
                     isOpen={isAddPlacePopupOpen}
                     onClose={closeAllPopups}
+                    onOvarlayClose={closeByOverlay}
                     children={<>
                         <label className="popup__input-label" for="place-input">
                             <input id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minLength="2"  maxLength="30" required />
@@ -105,12 +98,12 @@ function App() {
                         <button type="submit" className="popup__save popup__save_type_photo" value="Создать">Создать</button>
                     </>} 
                 />
-
                 <PopupWithForm
                     name="update-avatar"
                     title="Обновить аватар"
                     isOpen={isEditAvatarPopupOpen}
                     onClose={closeAllPopups}
+                    onOvarlayClose={closeByOverlay}
                     children={<>
                         <label className="popup__input-label" for="avatar-input">
                             <input id='avatar-input' className="popup__input popup__input_type_avatar-photo" type="url" name="avatar" placeholder="Ссылка на аватарку" required />
@@ -119,7 +112,6 @@ function App() {
                         <button type="submit" className="popup__save popup__save_type_avatar" value="Сохранить">Сохранить</button>
                     </>}
                 />
-
                 <PopupWithForm 
                     name="deleteСard"
                     title="Вы уверены?" 
@@ -128,10 +120,7 @@ function App() {
                     </>}
                 />
 
-
-
             </div>
-
 
         </body>
     );

@@ -115,12 +115,12 @@ class Api {
 
         return Promise.reject(`Ошибка ${response.status}`)
     }
-}
+};
 
 const config = {
     address: 'https://mesto.nomoreparties.co/v1/cohort-19',
     token: '369f7f82-3628-418a-9ccf-d1d1496569f6'
-}
+};
 
 const api = new Api(config);
 export default api;
