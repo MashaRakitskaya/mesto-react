@@ -1,6 +1,3 @@
-// import logo from './logo.svg';
-// import './index.css';
-// import logo from '../images/Vector.svg';
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
