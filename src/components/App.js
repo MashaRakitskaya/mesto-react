@@ -5,38 +5,27 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import { useState, useEffect } from 'react';
 import api from "../utils/api";
-import CurrentUserContext from "../contexts/CurrentUserContext";
-
+import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-
     const [isBigPhotoPopupOpen, setIsBigPhotoPopupOpen] = useState(false);
-
     const [selectedCard, setSelectedCard] = useState({});
-
-    const [currentUser, setСurrentUser] = useState();
-
+    const [currentUser, setСurrentUser] = useState({});
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true)
     };
-
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true)
     };
-
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(true)
     };
-
     function handleCardClick(card) {
         setSelectedCard(card);
         setIsBigPhotoPopupOpen(true);
     };
-
     function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
@@ -44,13 +33,11 @@ function App() {
         setIsBigPhotoPopupOpen(false);
         setSelectedCard({});
     };
-
     function closeByOverlay(event) { 
         if (event.target.classList.contains('popup')) {
             closeAllPopups()
         }
     };
-
     useEffect(() => {
         api.getUserInformation()
         .then((result) => {
@@ -60,6 +47,19 @@ function App() {
         })
         .catch(err => console.log(`Ошибка получения информации${err}`));
     },[]);
+
+    //     useEffect(() =>  {
+    //     Promise.all([api.getUserInformation(), api.getInitialCards()])
+    //     .then((result) =>{
+    //         setСurrentUser(result[0].avatar)
+    //         setСurrentUser(result[0].name)
+    //         setСurrentUser(result[0].about)
+    //         console.log(result[1])
+    //         setСurrentUser(result[1])
+    //     })
+    //     .catch(err => console.log(`Ошибка получения информации${err}`));
+          
+    // },[]);
 
     return (
         <div className="page">
