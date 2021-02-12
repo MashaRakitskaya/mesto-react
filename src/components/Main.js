@@ -10,11 +10,11 @@ function Main(props) {
     useEffect(() =>  {
         Promise.all([api.getUserInformation(), api.getInitialCards()])
         .then((result) =>{
-            console.log(result);
+            // console.log(result);
             setUserAvatar(result[0].avatar)
             setUserName(result[0].name)
             setUserDescription(result[0].about)
-            console.log(result[1])
+            // console.log(result[1])
             setCards(result[1])
         })
         .catch(err => console.log(`Ошибка получения информации${err}`));
