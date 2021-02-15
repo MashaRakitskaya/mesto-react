@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import api from "../utils/api";
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 import { CardsContext }  from "../contexts/СardsContext";
+import EditProfilePopup from "./EditProfilePopup.js";
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -124,7 +125,7 @@ function App() {
                             isOpen={isBigPhotoPopupOpen}
                             onOvarlayClose={closeByOverlay}
                         />
-                        <PopupWithForm name="edit-profile"
+                        {/* <PopupWithForm name="edit-profile"
                             title="Редактировать профиль"
                             isOpen={isEditProfilePopupOpen}
                             onClose={closeAllPopups}
@@ -140,6 +141,11 @@ function App() {
                                 </label>
                                 <button type="submit" className="popup__save popup__save_type_edit" value="Сохранить">Сохранить</button>
                             </>} 
+                        /> */}
+                        <EditProfilePopup
+                            isOpen={isEditProfilePopupOpen}
+                            onClose={closeAllPopups}
+                            onOvarlayClose={closeByOverlay}
                         />
                         <PopupWithForm 
                             name="add-photo"
