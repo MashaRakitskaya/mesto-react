@@ -6,8 +6,7 @@ import ImagePopup from "./ImagePopup.js";
 import { useState, useEffect } from 'react';
 import api from "../utils/api";
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
-import { CardsContext }  from "../contexts/CardsContext";
-CardsContext
+import { CardsContext }  from "../contexts/СardsContext";
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -41,28 +40,64 @@ function App() {
             closeAllPopups()
         }
     };
-    // useEffect(() => {
-    //     api.getUserInformation()
-    //     .then((result) => {
-    //         console.log(result);
-    //         setСurrentUser(result);
+    useEffect(() => {
+        api.getUserInformation()
+        .then((result) => {
+            console.log(result);
+            setСurrentUser(result);
             
+        })
+        .catch(err => console.log(`Ошибка получения информации${err}`));
+    },[]);
+
+    // useEffect(() => {
+    //     api.getInitialCards()
+    //     .then((result) =>{
+    //         console.log(result);
+    //         const cards = result.map((item) => {
+    //             return {
+    //                 _id: item._id,
+    //                 link: item.link,
+    //                 name: item.name,
+    //                 likes: item.likes
+    //             };
+    //         });
+    //         setCards(cards);
     //     })
     //     .catch(err => console.log(`Ошибка получения информации${err}`));
     // },[]);
-
-        useEffect(() =>  {
-        Promise.all([api.getUserInformation(), api.getInitialCards()])
+    useEffect(() => {
+        api.getInitialCards()
         .then((result) =>{
-            setСurrentUser(result[0].avatar)
-            setСurrentUser(result[0].name)
-            setСurrentUser(result[0].about)
-            console.log(result[1])
-            setCards(result[1])
+            console.log(result)
+            setCards(result)
         })
         .catch(err => console.log(`Ошибка получения информации${err}`));
-          
     },[]);
+
+    //     useEffect(() =>  {
+    //     Promise.all([api.getUserInformation(), api.getInitialCards()])
+    //     .then((result) =>{
+    //         setСurrentUser(result[0].avatar)
+    //         setСurrentUser(result[0].name)
+    //         setСurrentUser(result[0].about)
+    //         console.log(result[1])
+    //         // setCards(result[1])
+    //     })
+    //     .then((result) =>{
+    //         const cards = result.map((item) => {
+    //         return {
+    //             _id: item._id,
+    //             link: item.link,
+    //             name: item.name,
+    //             likes: item.likes
+    //         }
+    //         });
+    //         setCards(cards)
+    //     })
+    //     .catch(err => console.log(`Ошибка получения информации${err}`));
+          
+    // },[]);
 
     return (
         <div className="page">
@@ -71,10 +106,16 @@ function App() {
                     <CardsContext.Provider value={cards}>
                         <Header />
                         <Main
-                            onEditAvatar={handleEditAvatarClick}                 
-                            onEditProfile={handleEditProfileClick}        
-                            onAddPlace={handleAddPlaceClick}
-                            onCardClick={handleCardClick}
+                            // onEditAvatar={handleEditAvatarClick}                 
+                            // onEditProfile={handleEditProfileClick}        
+                            // onAddPlace={handleAddPlaceClick}
+                            // onCardClick={handleCardClick}
+                            // cards={cards}
+                            handleEditAvatarClick={handleEditAvatarClick}                 
+                            handleEditProfileClick={handleEditProfileClick}        
+                            handleAddPlaceClick={handleAddPlaceClick}
+                            handleCardClick={handleCardClick}
+                            // cards={cards}
                         />
                         <Footer />
                         <ImagePopup
