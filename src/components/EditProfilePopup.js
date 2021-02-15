@@ -1,23 +1,13 @@
 import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm.js";
-import api from "../utils/api";
+// import api from "../utils/api";
 import React from 'react';
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 
-function EditProfilePopup({isOpen, onClose, onOvarlayClose}) {
+function EditProfilePopup({isOpen, onClose, onOvarlayClose, onUpdateUser}) {
 const [name, setName] = useState('');
 const [description, setDescription] = useState('');
 const currentUser = React.useContext(CurrentUserContext);
-// useEffect(() => {
-//     api.getUserInformation()
-//     .then((result) => {
-//         console.log(result.about);
-//         setName(result.name);
-//         setDescription(result.about);
-//     })
-//     .catch(err => console.log(`Ошибка получения информации${err}`));
-// },[]);
-
 useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
@@ -31,12 +21,22 @@ function handleChangeDescription(e) {
     setDescription(e.target.value);
 };
 
+function handleSubmit(e) {
+    e.preventDefault();
+
+    onUpdateUser({
+      name: name,
+      about: description,
+    });
+};
+
 return(
     <PopupWithForm name="edit-profile"
         title="Редактировать профиль"
         isOpen={isOpen}
         onClose={onClose}
         onOvarlayClose={onOvarlayClose}
+        onUpdateUser={handleSubmit}
         children={<>
             <label className="popup__input-label" for="name-input">
                 <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required value={name}  onChange={handleChangeName} />
