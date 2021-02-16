@@ -56,8 +56,8 @@ function App() {
     //     .catch(err => console.log(`Ошибка отправки информации${err}`))
         
     // };
-    function handleUpdateUser(x) {
-        api.addUserInfo(x)
+    function handleUpdateUser({name, about}) {
+        api.addUserInfo({name: name, about: about})
         .then((result) => {
             console.log(result);
             setСurrentUser(result);

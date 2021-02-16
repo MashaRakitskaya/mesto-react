@@ -78,7 +78,7 @@ class Api {
     }
 
     //добавить информацию о пользователе на сервер
-    addUserInfo({ name, about }) {
+    addUserInfo(data) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -86,8 +86,8 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: name,
-                about: about
+                name: data.name,
+                about: data.about
             })
         })
         .then(response => this._checkAnswerCorrectness(response))
