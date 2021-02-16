@@ -8,6 +8,7 @@ import api from "../utils/api";
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 import { CardsContext }  from "../contexts/СardsContext";
 import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -41,6 +42,17 @@ function App() {
             closeAllPopups()
         }
     };
+    function handleUpdateUser({name, about}) {
+        api.addUserInfo({name: name, about: about})
+        .then((result) => {
+            console.log(result);
+            setСurrentUser(result);
+            closeAllPopups();
+        })
+        .catch(err => console.log(`Ошибка отправки информации${err}`))
+        
+    };
+
     useEffect(() => {
         api.getUserInformation()
         .then((result) => {
@@ -146,6 +158,7 @@ function App() {
                             isOpen={isEditProfilePopupOpen}
                             onClose={closeAllPopups}
                             onOvarlayClose={closeByOverlay}
+                            onUpdateUser={handleUpdateUser}
                         />
                         <PopupWithForm 
                             name="add-photo"
@@ -166,7 +179,7 @@ function App() {
                                 <button type="submit" className="popup__save popup__save_type_photo" value="Создать">Создать</button>
                             </>} 
                         />
-                        <PopupWithForm
+                        {/* <PopupWithForm
                             name="update-avatar"
                             title="Обновить аватар"
                             isOpen={isEditAvatarPopupOpen}
@@ -179,7 +192,12 @@ function App() {
                                 </label>
                                 <button type="submit" className="popup__save popup__save_type_avatar" value="Сохранить">Сохранить</button>
                             </>}
-                        />
+                        /> */}
+                        <EditAvatarPopup
+                            isOpen={isEditAvatarPopupOpen}
+                            onClose={closeAllPopups}
+                            onOvarlayClose={closeByOverlay}
+                        /> 
                         <PopupWithForm 
                             name="deleteСard"
                             title="Вы уверены?" 
