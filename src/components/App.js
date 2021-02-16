@@ -42,6 +42,26 @@ function App() {
             closeAllPopups()
         }
     };
+
+    useEffect(() => {
+        api.getUserInformation()
+        .then((result) => {
+            console.log(result);
+            setСurrentUser(result);
+            
+        })
+        .catch(err => console.log(`Ошибка получения информации${err}`));
+    },[]);
+    
+    useEffect(() => {
+        api.getInitialCards()
+        .then((result) =>{
+            console.log(result)
+            setCards(result)
+        })
+        .catch(err => console.log(`Ошибка получения информации${err}`));
+    },[]);
+
     function handleUpdateUser({name, about}) {
         api.addUserInfo({name: name, about: about})
         .then((result) => {
@@ -53,15 +73,17 @@ function App() {
         
     };
 
-    useEffect(() => {
-        api.getUserInformation()
+    function handleUpdateAvatar({avatar}) {
+        api.addUserAvatar({avatar: avatar})
         .then((result) => {
             console.log(result);
             setСurrentUser(result);
-            
+            closeAllPopups();
         })
-        .catch(err => console.log(`Ошибка получения информации${err}`));
-    },[]);
+        .catch(err => console.log(`Ошибка отправки информации${err}`))
+    };
+
+    
 
     // useEffect(() => {
     //     api.getInitialCards()
@@ -79,14 +101,7 @@ function App() {
     //     })
     //     .catch(err => console.log(`Ошибка получения информации${err}`));
     // },[]);
-    useEffect(() => {
-        api.getInitialCards()
-        .then((result) =>{
-            console.log(result)
-            setCards(result)
-        })
-        .catch(err => console.log(`Ошибка получения информации${err}`));
-    },[]);
+    
 
     //     useEffect(() =>  {
     //     Promise.all([api.getUserInformation(), api.getInitialCards()])
@@ -158,7 +173,8 @@ function App() {
                             isOpen={isEditProfilePopupOpen}
                             onClose={closeAllPopups}
                             onOvarlayClose={closeByOverlay}
-                            onUpdateUser={handleUpdateUser}
+                            // onUpdateUser={handleUpdateUser}
+                            onSubmit={handleUpdateUser}
                         />
                         <PopupWithForm 
                             name="add-photo"
@@ -197,6 +213,8 @@ function App() {
                             isOpen={isEditAvatarPopupOpen}
                             onClose={closeAllPopups}
                             onOvarlayClose={closeByOverlay}
+                            // onUpdateAvatar={handleUpdateAvatar}
+                            onSubmit={handleUpdateAvatar}
                         /> 
                         <PopupWithForm 
                             name="deleteСard"

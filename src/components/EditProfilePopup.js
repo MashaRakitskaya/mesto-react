@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm.js";
-//import api from "../utils/api";
 import React from 'react';
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 
-function EditProfilePopup({isOpen, onClose, onOvarlayClose, onUpdateUser}) {
+function EditProfilePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
 const [name, setName] = useState('');
 const [description, setDescription] = useState('');
 const currentUser = React.useContext(CurrentUserContext);
@@ -25,10 +24,14 @@ function handleChangeDescription(e) {
 function handleSubmit(e) {
     e.preventDefault();
 
-    onUpdateUser({
-      name: name,
-      about: description,
-    });
+    // onUpdateUser({
+    //   name: name,
+    //   about: description,
+    // });
+    onSubmit({
+        name: name,
+        about: description,
+      });
 };
 
 return(
@@ -37,7 +40,8 @@ return(
         isOpen={isOpen}
         onClose={onClose}
         onOvarlayClose={onOvarlayClose}
-        onUpdateUser={handleSubmit}
+        // onUpdateUser={handleSubmit}
+        onSubmit={handleSubmit}
         children={<>
             <label className="popup__input-label" for="name-input">
                 <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required value={name}  onChange={handleChangeName} />
