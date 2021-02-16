@@ -31,7 +31,7 @@ function handleSubmit(e) {
     onSubmit({
         name: name,
         about: description,
-      });
+    });
 };
 
 return(

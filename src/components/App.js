@@ -9,6 +9,7 @@ import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 import { CardsContext }  from "../contexts/СardsContext";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
+import AddPlacePopup from "./AddPlacePopup.js";
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -78,6 +79,16 @@ function App() {
         .then((result) => {
             console.log(result);
             setСurrentUser(result);
+            closeAllPopups();
+        })
+        .catch(err => console.log(`Ошибка отправки информации${err}`))
+    };
+
+    function handleAddPlaceSubmit({name, link}) {
+        api.addCard({name: name, link: link})
+        .then((result) => {
+            console.log(result);
+            setCards(result);
             closeAllPopups();
         })
         .catch(err => console.log(`Ошибка отправки информации${err}`))
@@ -176,7 +187,13 @@ function App() {
                             // onUpdateUser={handleUpdateUser}
                             onSubmit={handleUpdateUser}
                         />
-                        <PopupWithForm 
+                        <AddPlacePopup
+                            isOpen={isAddPlacePopupOpen}
+                            onClose={closeAllPopups}
+                            onOvarlayClose={closeByOverlay}
+                            onSubmit={handleAddPlaceSubmit}
+                        />
+                        {/* <PopupWithForm 
                             name="add-photo"
                             title="Новое место"
                             isOpen={isAddPlacePopupOpen}
@@ -194,7 +211,8 @@ function App() {
                                 </label>
                                 <button type="submit" className="popup__save popup__save_type_photo" value="Создать">Создать</button>
                             </>} 
-                        />
+                        /> */}
+
                         {/* <PopupWithForm
                             name="update-avatar"
                             title="Обновить аватар"
