@@ -16,7 +16,7 @@ function EditAvatarPopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
         onSubmit({
             avatar: avatarRef.current.value
         });
-
+        avatarRef.current.value = '';
     };
 
     return(
