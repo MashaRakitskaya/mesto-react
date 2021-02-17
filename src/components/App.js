@@ -105,7 +105,25 @@ function App() {
         .catch(err => console.log(`Ошибка отправки информации${err}`))
     };
 
-    
+    // function handleDeleteClick(card) {
+    //     const isLiked = card.likes.some(i => i._id === currentUser._id);
+    //     api.deleteLike(card._id, !isLiked)
+    //     .then((newCard) => {
+    //         console.log(newCard);
+    //         const newCards = cards.map((c) => c._id === card._id ? c : newCard);
+    //         setCards(newCards);
+    //     })
+    //     .catch(err => console.log(`Ошибка отправки информации${err}`))
+    // };
+    function handleDeleteClick(card) {
+        api.removeCard(card._id)
+        .then((newCard) => {
+            console.log(newCard);
+            const removeCard = cards.filter((c) => c._id !== card._id);
+            setCards(removeCard);
+        })
+        .catch(err => console.log(`Ошибка отправки информации${err}`))
+    };
 
     // function handleAddPlaceSubmit({name, link}) {
     //     api.addCard({name: name, link: link})
@@ -185,6 +203,7 @@ function App() {
                             handleAddPlaceClick={handleAddPlaceClick}
                             handleCardClick={handleCardClick}
                             handleLikeClick={handleLikeClick}
+                            handleDeleteClick={handleDeleteClick}
                             // cards={cards}
                         />
                         <Footer />

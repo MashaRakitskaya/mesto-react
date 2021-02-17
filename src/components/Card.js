@@ -3,7 +3,7 @@ import React from 'react';
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 function Card(props) {
     const currentUser = React.useContext(CurrentUserContext);
-    // const isOwn = props.card.owner._id === currentUser._id;
+    const isOwn = props.card.owner._id === currentUser._id;
     const isLiked = props.card.likes.some(i => i._id === currentUser._id);
 
     function handleClick() {
@@ -13,17 +13,17 @@ function Card(props) {
     function handleLikeClick() {
         props.onCardLike(props.card);
     };
-    // function handleDeleteClick() {
-    //     props.onCardDelete(props.card);
-    // };
+    function handleDeleteClick() {
+        props.onCardDelete(props.card);
+    };
     
     const cardLikeButtonClassName = ( 
         `element__like ${isLiked ? 'element__like_pressed' : ''}`
     );
 
-    // const cardDeleteButtonClassName = ( 
-    //     `element__basket ${isOwn ? '' : 'element__basket_hidden'}`
-    // );
+    const cardDeleteButtonClassName = ( 
+        `element__basket ${isOwn ? '' : 'element__basket_hidden'}`
+    );
     
 
 
@@ -50,8 +50,7 @@ function Card(props) {
                 <p className="element__number">{props.card.likes.length}</p>
             </div>
         </div>
-        {/* <button onClick={handleDeleteClick} className={cardDeleteButtonClassName}></button> */}
-        <button className="element__basket"></button>
+        <button onClick={handleDeleteClick} className={cardDeleteButtonClassName}></button>
     </article>
     )
 }
