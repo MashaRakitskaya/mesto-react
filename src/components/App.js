@@ -93,6 +93,19 @@ function App() {
         })
         .catch(err => console.log(`Ошибка отправки информации${err}`))
     };
+    function handleLikeClick(card) {
+        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        api.addLike(card._id, !isLiked)
+        // api.addLike(card._id)
+        .then((newCard) => {
+            console.log(newCard);
+            const newCards = cards.map((c) => c._id === card._id ? newCard : c);
+            setCards(newCards);
+        })
+        .catch(err => console.log(`Ошибка отправки информации${err}`))
+    };
+
+    
 
     // function handleAddPlaceSubmit({name, link}) {
     //     api.addCard({name: name, link: link})
@@ -171,6 +184,7 @@ function App() {
                             handleEditProfileClick={handleEditProfileClick}        
                             handleAddPlaceClick={handleAddPlaceClick}
                             handleCardClick={handleCardClick}
+                            handleLikeClick={handleLikeClick}
                             // cards={cards}
                         />
                         <Footer />

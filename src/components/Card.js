@@ -1,13 +1,31 @@
 import React from 'react';
 // import { CardsContext }  from "../contexts/СardsContext";
-
+import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 function Card(props) {
-
-    // const cards = React.useContext(CardsContext);
+    const currentUser = React.useContext(CurrentUserContext);
+    // const isOwn = props.card.owner._id === currentUser._id;
+    const isLiked = props.card.likes.some(i => i._id === currentUser._id);
 
     function handleClick() {
         props.onCardClick(props.card);
     };
+
+    function handleLikeClick() {
+        props.onCardLike(props.card);
+    };
+    // function handleDeleteClick() {
+    //     props.onCardDelete(props.card);
+    // };
+    
+    const cardLikeButtonClassName = ( 
+        `element__like ${isLiked ? 'element__like_pressed' : ''}`
+    );
+
+    // const cardDeleteButtonClassName = ( 
+    //     `element__basket ${isOwn ? '' : 'element__basket_hidden'}`
+    // );
+    
+
 
     // return(
     //     <article className="element">
@@ -28,10 +46,11 @@ function Card(props) {
         <div className="element__position">
             <h2 className="element__title">{props.card.name}</h2>
             <div className="element__like-number">
-                <button className="element__like" type="button"></button>
+                <button onClick={handleLikeClick} className={cardLikeButtonClassName} type="button"></button>
                 <p className="element__number">{props.card.likes.length}</p>
             </div>
         </div>
+        {/* <button onClick={handleDeleteClick} className={cardDeleteButtonClassName}></button> */}
         <button className="element__basket"></button>
     </article>
     )
