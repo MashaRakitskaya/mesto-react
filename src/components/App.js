@@ -88,11 +88,28 @@ function App() {
         api.addCard({name: name, link: link})
         .then((result) => {
             console.log(result);
-            setCards(result);
+            setCards([result, ...cards]);
             closeAllPopups();
         })
         .catch(err => console.log(`Ошибка отправки информации${err}`))
     };
+
+    // function handleAddPlaceSubmit({name, link}) {
+    //     api.addCard({name: name, link: link})
+    //     .then((result) => {
+    //         console.log(result);
+    //         const cards = result.map((item)=>{
+    //             return {
+    //                 _id:item._id,
+    //                 name:item.name,
+    //                 link:item.link
+    //             };
+    //         });
+    //         setCards(cards);
+    //         closeAllPopups();
+    //     })
+    //     .catch(err => console.log(`Ошибка отправки информации${err}`))
+    // };
 
     
 
