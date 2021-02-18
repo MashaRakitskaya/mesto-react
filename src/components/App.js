@@ -93,9 +93,9 @@ function App() {
         })
         .catch(err => console.log(`Ошибка отправки информации${err}`))
     };
-    function handleLikeClick(card) {
+    function handleCardLike(card) {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
-        api.addLike(card._id, !isLiked)
+        api.changeLikeCardStatus(card._id, !isLiked)
         .then((newCard) => {
             console.log(newCard);
             const newCards = cards.map((c) => c._id === card._id ? newCard : c);
@@ -104,7 +104,7 @@ function App() {
         .catch(err => console.log(`Ошибка отправки информации${err}`))
     };
 
-    function handleDeleteClick(card) {
+    function handleCardDelete(card) {
         api.removeCard(card._id)
         .then((newCard) => {
             console.log(newCard);
@@ -191,8 +191,8 @@ function App() {
                             handleEditProfileClick={handleEditProfileClick}        
                             handleAddPlaceClick={handleAddPlaceClick}
                             handleCardClick={handleCardClick}
-                            handleLikeClick={handleLikeClick}
-                            handleDeleteClick={handleDeleteClick}
+                            handleLikeClick={handleCardLike}
+                            handleCardDelete={handleCardDelete}
                             // cards={cards}
                         />
                         <Footer />

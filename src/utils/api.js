@@ -54,7 +54,7 @@ class Api {
     }
 
     //добавить лайк карточке на сервер
-    addLike(cardId, isLiked) {
+    changeLikeCardStatus(cardId, isLiked) {
         if(isLiked) {return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {

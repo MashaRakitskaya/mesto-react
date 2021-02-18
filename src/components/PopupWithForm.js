@@ -28,4 +28,3 @@ function PopupWithForm(props) {
     );
 }
 export default PopupWithForm;
-//onSubmit={props.onUpdateUser, props.onUpdateAvatar}

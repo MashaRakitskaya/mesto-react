@@ -5,7 +5,7 @@ import React from 'react';
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 import { CardsContext }  from "../contexts/СardsContext";
 
-function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick, handleCardClick, handleLikeClick, handleDeleteClick}) {
+function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick, handleCardClick, handleLikeClick, handleCardDelete}) {
 
     const currentUser = React.useContext(CurrentUserContext);
     const cards = React.useContext(CardsContext);
@@ -32,7 +32,7 @@ function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClic
                             card={item}
                             onCardClick={handleCardClick}
                             onCardLike={handleLikeClick}
-                            onCardDelete={handleDeleteClick}
+                            onCardDelete={handleCardDelete}
                         />
                     )
                 } 
