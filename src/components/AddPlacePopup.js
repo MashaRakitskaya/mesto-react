@@ -27,8 +27,8 @@ function handleSubmit(e) {
         name: name,
         link: link,
     });
-    // name.value='';
-    // link.value='';
+    setName('');
+    setLink('');
 }
     return(
         <PopupWithForm name="add-photo"

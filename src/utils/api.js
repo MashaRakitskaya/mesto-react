@@ -54,28 +54,39 @@ class Api {
     }
 
     //добавить лайк карточке на сервер
-    addLike(cardId) {
-        return fetch(`${this._address}/cards/likes/${cardId}`, {
+    addLike(cardId, isLiked) {
+        if(isLiked) {return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {
                 authorization: this._token,
                 'Content-Type': 'application/json'
             }
         })
-        .then(response => this._checkAnswerCorrectness(response))
+        .then(response => this._checkAnswerCorrectness(response))}
+        else {
+            return fetch(`${this._address}/cards/likes/${cardId}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: this._token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => this._checkAnswerCorrectness(response))
+        }
+        
     }
 
-    //удалить лайк с сервера
-    deleteLike(cardId) {
-        return fetch(`${this._address}/cards/likes/${cardId}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => this._checkAnswerCorrectness(response))
-    }
+    // //удалить лайк с сервера
+    // deleteLike(cardId) {
+    //     return fetch(`${this._address}/cards/likes/${cardId}`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             authorization: this._token,
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //     .then(response => this._checkAnswerCorrectness(response))
+    // }
 
     //добавить информацию о пользователе на сервер
     addUserInfo(data) {
