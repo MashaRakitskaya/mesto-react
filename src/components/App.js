@@ -202,23 +202,6 @@ function App() {
                             isOpen={isBigPhotoPopupOpen}
                             onOvarlayClose={closeByOverlay}
                         />
-                        {/* <PopupWithForm name="edit-profile"
-                            title="Редактировать профиль"
-                            isOpen={isEditProfilePopupOpen}
-                            onClose={closeAllPopups}
-                            onOvarlayClose={closeByOverlay}
-                            children={<>
-                                <label className="popup__input-label" for="name-input">
-                                    <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required />
-                                    <span id="name-input-error" className="popup__input-error"></span>
-                                </label>
-                                <label className="popup__input-label" for="occupation-input">
-                                    <input id='occupation-input' className="popup__input popup__input_type_title" type="text" name="occupation" minLength="2"  maxLength="200" required />
-                                    <span id="occupation-input-error" className="popup__input-error"></span>
-                                </label>
-                                <button type="submit" className="popup__save popup__save_type_edit" value="Сохранить">Сохранить</button>
-                            </>} 
-                        /> */}
                         <EditProfilePopup
                             isOpen={isEditProfilePopupOpen}
                             onClose={closeAllPopups}
