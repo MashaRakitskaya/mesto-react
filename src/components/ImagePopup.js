@@ -45,7 +45,6 @@ function ImagePopup({card, onClose, isOpen, onOvarlayClose}) {
             }
         } 
     )
-    //,[props.isOpen, props.onClose]
     return(
         <div className={`popup popup_type_big-photo ${isOpen && 'popup_opened'}`} onClick={onOvarlayClose}>
             <div className="popup__content-photo">

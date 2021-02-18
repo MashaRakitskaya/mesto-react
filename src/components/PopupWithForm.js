@@ -47,7 +47,6 @@ function PopupWithForm({name, title , isOpen, onClose, onOvarlayClose, onSubmit,
             }
         }
     )
-    //, [props.isOpen, props.onClose]
     return (
         <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`} onClick={onOvarlayClose}>
                 <div className="popup__content">
