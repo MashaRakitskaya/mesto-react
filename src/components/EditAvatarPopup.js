@@ -9,10 +9,6 @@ function EditAvatarPopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
  
     function handleSubmit(e) {
         e.preventDefault();
-        // console.log(avatarRef.current.value);
-        // onUpdateAvatar({
-        //     avatar: avatarRef.current.value
-        // });
         onSubmit({
             avatar: avatarRef.current.value
         });
@@ -25,7 +21,6 @@ function EditAvatarPopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
             isOpen={isOpen}
             onClose={onClose}
             onOvarlayClose={onOvarlayClose}
-            // onUpdateAvatar={handleSubmit}
             onSubmit={handleSubmit}
             children={<>
                 <label className="popup__input-label" for="avatar-input">

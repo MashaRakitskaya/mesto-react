@@ -2,34 +2,33 @@ import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm.js";
 import React from 'react';
 import { CardsContext }  from "../contexts/СardsContext";
-
 function AddPlacePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
-const [name, setName] = useState('');
-const [link, setLink] = useState('');
-const cards = React.useContext(CardsContext);
+    const [name, setName] = useState('');
+    const [link, setLink] = useState('');
+    const cards = React.useContext(CardsContext);
 
-useEffect(() => {
-    setName(cards.name);
-    setLink(cards.link);
-}, [cards]); 
+    useEffect(() => {
+        setName(cards.name);
+        setLink(cards.link);
+    }, [cards]); 
 
-function handleChangeName(e) {
-    setName(e.target.value);
-    // setDescription(e.target.value);
-};
-function handleChangeLink(e) {
-    setLink(e.target.value);
-};
+    function handleChangeName(e) {
+        setName(e.target.value);
+    };
+    function handleChangeLink(e) {
+        setLink(e.target.value);
+    };
 
-function handleSubmit(e) {
-    e.preventDefault();
-    onSubmit({
-        name: name,
-        link: link,
-    });
-    setName('');
-    setLink('');
-}
+    function handleSubmit(e) {
+        e.preventDefault();
+        onSubmit({
+            name: name,
+            link: link,
+        });
+        setName('');
+        setLink('');
+    };
+    
     return(
         <PopupWithForm name="add-photo"
             title="Новое место"
