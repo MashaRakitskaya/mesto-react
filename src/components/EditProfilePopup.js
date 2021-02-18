@@ -9,8 +9,8 @@ function EditProfilePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
     const currentUser = React.useContext(CurrentUserContext);
 
     useEffect(() => {
-        setName(currentUser.name);
-        setDescription(currentUser.about);
+        setName(String(currentUser.name));
+        setDescription(String(currentUser.about));
     }, [currentUser]); 
 
     function handleChangeName(e) {
@@ -36,11 +36,11 @@ function EditProfilePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
             onOvarlayClose={onOvarlayClose}
             onSubmit={handleSubmit}
             children={<>
-                <label className="popup__input-label" for="name-input">
+                <label className="popup__input-label" htmlFor="name-input">
                     <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required value={name}  onChange={handleChangeName} />
                     <span id="name-input-error" className="popup__input-error"></span>
                 </label>
-                <label className="popup__input-label" for="occupation-input">
+                <label className="popup__input-label" htmlFor="occupation-input">
                     <input id='occupation-input' className="popup__input popup__input_type_title" type="text" name="occupation" minLength="2"  maxLength="200" required value={description} onChange={handleChangeDescription} />
                     <span id="occupation-input-error" className="popup__input-error"></span>
                 </label>

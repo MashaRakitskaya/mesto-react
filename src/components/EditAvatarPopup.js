@@ -21,7 +21,7 @@ function EditAvatarPopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
             onOvarlayClose={onOvarlayClose}
             onSubmit={handleSubmit}
             children={<>
-                <label className="popup__input-label" for="avatar-input">
+                <label className="popup__input-label" htmlFor="avatar-input">
                     <input ref={avatarRef} id='avatar-input' className="popup__input popup__input_type_avatar-photo" type="url" name="avatar" placeholder="Ссылка на аватарку" required  />
                     <span id="avatar-input-error" className="popup__input-error"></span>
                 </label>

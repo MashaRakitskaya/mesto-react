@@ -8,8 +8,8 @@ function AddPlacePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
     const cards = React.useContext(CardsContext);
 
     useEffect(() => {
-        setName(cards.name);
-        setLink(cards.link);
+        setName(String(cards.name));
+        setLink(String(cards.link));
     }, [cards]); 
 
     function handleChangeName(e) {
@@ -28,7 +28,7 @@ function AddPlacePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
         setName('');
         setLink('');
     };
-    
+
     return(
         <PopupWithForm name="add-photo"
             title="Новое место"
@@ -37,13 +37,13 @@ function AddPlacePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
             onOvarlayClose={onOvarlayClose}
             onSubmit={handleSubmit}
             children={<>
-                <label className="popup__input-label" for="place-input">
-                    <input value={name}  onChange={handleChangeName} id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minLength="2"  maxLength="30" required />
+                <label className="popup__input-label" htmlFor="place-input">
+                    <input onChange={handleChangeName} id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minLength="2"  maxLength="30" required />
                     <span id="place-input-error" className="popup__input-error"></span>
                 </label>
                             
-                 <label className="popup__input-label" for="url-input">
-                    <input value={link}  onChange={handleChangeLink} id='url-input' className="popup__input popup__input_type_photo" type="url" name="photo" placeholder="Ссылка на картинку" required />
+                <label className="popup__input-label" htmlFor="url-input">
+                    <input onChange={handleChangeLink} id='url-input' className="popup__input popup__input_type_photo" type="url" name="photo" placeholder="Ссылка на картинку" required />
                     <span id="url-input-error" className="popup__input-error"></span>
                 </label>
                 <button type="submit" className="popup__save popup__save_type_photo" value="Создать">Создать</button>

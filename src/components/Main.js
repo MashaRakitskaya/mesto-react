@@ -16,10 +16,10 @@ function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClic
         
             <div className="profile__info">
                 <h1 className="profile__title">{currentUser.name}</h1>
-                <button onClick={handleEditProfileClick} className="profile__edit-button" type="button"></button>
+                <button onClick={handleEditProfileClick} className="profile__edit-button" type="button" />
                 <p className="profile__paragraph">{currentUser.about}</p>
             </div>
-            <button onClick={handleAddPlaceClick} className="profile__add-button" type="button"></button>
+            <button onClick={handleAddPlaceClick} className="profile__add-button" type="button" />
         </section>
         <section className="elements">
             {cards.map((item) => {

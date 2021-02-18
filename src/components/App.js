@@ -16,7 +16,7 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isBigPhotoPopupOpen, setIsBigPhotoPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({});
-    const [currentUser, setСurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true)
@@ -53,7 +53,7 @@ function App() {
         api.getUserInformation()
         .then((result) => {
             // console.log(result);
-            setСurrentUser(result);
+            setCurrentUser(result);
             
         })
         .catch(err => console.log(`Ошибка получения информации${err}`));
@@ -72,7 +72,7 @@ function App() {
         api.addUserInfo({name: name, about: about})
         .then((result) => {
             // console.log(result);
-            setСurrentUser(result);
+            setCurrentUser(result);
             closeAllPopups();
         })
         .catch(err => console.log(`Ошибка отправки информации${err}`))
@@ -83,7 +83,7 @@ function App() {
         api.addUserAvatar({avatar: avatar})
         .then((result) => {
             // console.log(result);
-            setСurrentUser(result);
+            setCurrentUser(result);
             closeAllPopups();
         })
         .catch(err => console.log(`Ошибка отправки информации${err}`))
