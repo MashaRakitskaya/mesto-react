@@ -34,7 +34,6 @@ function EditProfilePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
             isOpen={isOpen}
             onClose={onClose}
             onOvarlayClose={onOvarlayClose}
-            // onUpdateUser={handleSubmit}
             onSubmit={handleSubmit}
             children={<>
                 <label className="popup__input-label" for="name-input">

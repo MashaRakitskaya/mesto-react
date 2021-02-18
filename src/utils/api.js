@@ -53,7 +53,7 @@ class Api {
         .then(response => this._checkAnswerCorrectness(response))
     }
 
-    //добавить лайк карточке на сервер
+    //добавить или снять лайк карточке
     changeLikeCardStatus(cardId, isLiked) {
         if(isLiked) {return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'PUT',
@@ -73,20 +73,7 @@ class Api {
             })
             .then(response => this._checkAnswerCorrectness(response))
         }
-        
     }
-
-    // //удалить лайк с сервера
-    // deleteLike(cardId) {
-    //     return fetch(`${this._address}/cards/likes/${cardId}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             authorization: this._token,
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    //     .then(response => this._checkAnswerCorrectness(response))
-    // }
 
     //добавить информацию о пользователе на сервер
     addUserInfo(data) {

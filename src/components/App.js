@@ -52,7 +52,7 @@ function App() {
     useEffect(() => {
         api.getUserInformation()
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             setСurrentUser(result);
             
         })
@@ -62,7 +62,7 @@ function App() {
     useEffect(() => {
         api.getInitialCards()
         .then((result) =>{
-            console.log(result)
+            // console.log(result)
             setCards(result)
         })
         .catch(err => console.log(`Ошибка получения информации${err}`));
@@ -71,7 +71,7 @@ function App() {
     function handleUpdateUser({name, about}) {
         api.addUserInfo({name: name, about: about})
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             setСurrentUser(result);
             closeAllPopups();
         })
@@ -82,7 +82,7 @@ function App() {
     function handleUpdateAvatar({avatar}) {
         api.addUserAvatar({avatar: avatar})
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             setСurrentUser(result);
             closeAllPopups();
         })
@@ -92,7 +92,7 @@ function App() {
     function handleAddPlaceSubmit({name, link}) {
         api.addCard({name: name, link: link})
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             setCards([result, ...cards]);
             closeAllPopups();
         })
@@ -103,7 +103,7 @@ function App() {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         api.changeLikeCardStatus(card._id, !isLiked)
         .then((newCard) => {
-            console.log(newCard);
+            // console.log(newCard);
             const newCards = cards.map((c) => c._id === card._id ? newCard : c);
             setCards(newCards);
         })
@@ -113,7 +113,7 @@ function App() {
     function handleCardDelete(card) {
         api.removeCard(card._id)
         .then((newCard) => {
-            console.log(newCard);
+            // console.log(newCard);
             const removeCard = cards.filter((c) => c._id !== card._id);
             setCards(removeCard);
         })

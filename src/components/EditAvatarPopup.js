@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRef } from "react";
 import PopupWithForm from "./PopupWithForm.js";
-// import { CurrentUserContext }  from "../contexts/CurrentUserContext";
 
 function EditAvatarPopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
     const avatarRef = useRef(null);
