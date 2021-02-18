@@ -21,16 +21,20 @@ function App() {
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true)
     };
+    
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true)
     };
+
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(true)
     };
+
     function handleCardClick(card) {
         setSelectedCard(card);
         setIsBigPhotoPopupOpen(true);
     };
+
     function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
@@ -38,6 +42,7 @@ function App() {
         setIsBigPhotoPopupOpen(false);
         setSelectedCard({});
     };
+
     function closeByOverlay(event) { 
         if (event.target.classList.contains('popup')) {
             closeAllPopups()
@@ -93,6 +98,7 @@ function App() {
         })
         .catch(err => console.log(`Ошибка отправки информации${err}`))
     };
+
     function handleCardLike(card) {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         api.changeLikeCardStatus(card._id, !isLiked)
@@ -114,67 +120,6 @@ function App() {
         .catch(err => console.log(`Ошибка отправки информации${err}`))
     };
 
-    // function handleAddPlaceSubmit({name, link}) {
-    //     api.addCard({name: name, link: link})
-    //     .then((result) => {
-    //         console.log(result);
-    //         const cards = result.map((item)=>{
-    //             return {
-    //                 _id:item._id,
-    //                 name:item.name,
-    //                 link:item.link
-    //             };
-    //         });
-    //         setCards(cards);
-    //         closeAllPopups();
-    //     })
-    //     .catch(err => console.log(`Ошибка отправки информации${err}`))
-    // };
-
-    
-
-    // useEffect(() => {
-    //     api.getInitialCards()
-    //     .then((result) =>{
-    //         console.log(result);
-    //         const cards = result.map((item) => {
-    //             return {
-    //                 _id: item._id,
-    //                 link: item.link,
-    //                 name: item.name,
-    //                 likes: item.likes
-    //             };
-    //         });
-    //         setCards(cards);
-    //     })
-    //     .catch(err => console.log(`Ошибка получения информации${err}`));
-    // },[]);
-    
-
-    //     useEffect(() =>  {
-    //     Promise.all([api.getUserInformation(), api.getInitialCards()])
-    //     .then((result) =>{
-    //         setСurrentUser(result[0].avatar)
-    //         setСurrentUser(result[0].name)
-    //         setСurrentUser(result[0].about)
-    //         console.log(result[1])
-    //         // setCards(result[1])
-    //     })
-    //     .then((result) =>{
-    //         const cards = result.map((item) => {
-    //         return {
-    //             _id: item._id,
-    //             link: item.link,
-    //             name: item.name,
-    //             likes: item.likes
-    //         }
-    //         });
-    //         setCards(cards)
-    //     })
-    //     .catch(err => console.log(`Ошибка получения информации${err}`));
-          
-    // },[]);
-
     return (
         <div className="page">
             <div className="page__container">
@@ -182,18 +127,12 @@ function App() {
                     <CardsContext.Provider value={cards}>
                         <Header />
                         <Main
-                            // onEditAvatar={handleEditAvatarClick}                 
-                            // onEditProfile={handleEditProfileClick}        
-                            // onAddPlace={handleAddPlaceClick}
-                            // onCardClick={handleCardClick}
-                            // cards={cards}
                             handleEditAvatarClick={handleEditAvatarClick}                 
                             handleEditProfileClick={handleEditProfileClick}        
                             handleAddPlaceClick={handleAddPlaceClick}
                             handleCardClick={handleCardClick}
                             handleLikeClick={handleCardLike}
                             handleCardDelete={handleCardDelete}
-                            // cards={cards}
                         />
                         <Footer />
                         <ImagePopup
@@ -206,7 +145,6 @@ function App() {
                             isOpen={isEditProfilePopupOpen}
                             onClose={closeAllPopups}
                             onOvarlayClose={closeByOverlay}
-                            // onUpdateUser={handleUpdateUser}
                             onSubmit={handleUpdateUser}
                         />
                         <AddPlacePopup
@@ -215,45 +153,10 @@ function App() {
                             onOvarlayClose={closeByOverlay}
                             onSubmit={handleAddPlaceSubmit}
                         />
-                        {/* <PopupWithForm 
-                            name="add-photo"
-                            title="Новое место"
-                            isOpen={isAddPlacePopupOpen}
-                            onClose={closeAllPopups}
-                            onOvarlayClose={closeByOverlay}
-                            children={<>
-                                <label className="popup__input-label" for="place-input">
-                                    <input id='place-input' className="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minLength="2"  maxLength="30" required />
-                                    <span id="place-input-error" className="popup__input-error"></span>
-                                </label>
-                            
-                                <label className="popup__input-label" for="url-input">
-                                    <input id='url-input' className="popup__input popup__input_type_photo" type="url" name="photo" placeholder="Ссылка на картинку" required />
-                                    <span id="url-input-error" className="popup__input-error"></span>
-                                </label>
-                                <button type="submit" className="popup__save popup__save_type_photo" value="Создать">Создать</button>
-                            </>} 
-                        /> */}
-
-                        {/* <PopupWithForm
-                            name="update-avatar"
-                            title="Обновить аватар"
-                            isOpen={isEditAvatarPopupOpen}
-                            onClose={closeAllPopups}
-                            onOvarlayClose={closeByOverlay}
-                            children={<>
-                                <label className="popup__input-label" for="avatar-input">
-                                    <input id='avatar-input' className="popup__input popup__input_type_avatar-photo" type="url" name="avatar" placeholder="Ссылка на аватарку" required />
-                                    <span id="avatar-input-error" className="popup__input-error"></span>
-                                </label>
-                                <button type="submit" className="popup__save popup__save_type_avatar" value="Сохранить">Сохранить</button>
-                            </>}
-                        /> */}
                         <EditAvatarPopup
                             isOpen={isEditAvatarPopupOpen}
                             onClose={closeAllPopups}
                             onOvarlayClose={closeByOverlay}
-                            // onUpdateAvatar={handleUpdateAvatar}
                             onSubmit={handleUpdateAvatar}
                         /> 
                         <PopupWithForm 
@@ -266,9 +169,7 @@ function App() {
                     </CardsContext.Provider>    
                 </CurrentUserContext.Provider>
             </div>
-
         </div>
     );
 }
-
 export default App;
