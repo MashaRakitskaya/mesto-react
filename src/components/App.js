@@ -6,7 +6,6 @@ import ImagePopup from "./ImagePopup.js";
 import { useState, useEffect } from 'react';
 import api from "../utils/api";
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
-import { CardsContext }  from "../contexts/СardsContext";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
@@ -124,7 +123,6 @@ function App() {
         <div className="page">
             <div className="page__container">
                 <CurrentUserContext.Provider value={currentUser}>
-                    <CardsContext.Provider value={cards}>
                         <Header />
                         <Main
                             handleEditAvatarClick={handleEditAvatarClick}                 
@@ -133,6 +131,7 @@ function App() {
                             handleCardClick={handleCardClick}
                             handleLikeClick={handleCardLike}
                             handleCardDelete={handleCardDelete}
+                            cards={cards}
                         />
                         <Footer />
                         <ImagePopup
@@ -166,7 +165,6 @@ function App() {
                                 <button type="submit" className="popup__save popup__save_type_deleteСard">Да</button>
                             </>}
                         />
-                    </CardsContext.Provider>    
                 </CurrentUserContext.Provider>
             </div>
         </div>

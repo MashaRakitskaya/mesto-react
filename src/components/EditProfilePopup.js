@@ -37,7 +37,7 @@ function EditProfilePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
             onSubmit={handleSubmit}
             children={<>
                 <label className="popup__input-label" htmlFor="name-input">
-                    <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required value={name}  onChange={handleChangeName} />
+                    <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required value={name} onChange={handleChangeName} />
                     <span id="name-input-error" className="popup__input-error"></span>
                 </label>
                 <label className="popup__input-label" htmlFor="occupation-input">
