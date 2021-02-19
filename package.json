@@ -22,10 +22,6 @@
     "predeploy": "npm run build"
   },
   "homepage": "https://github.com/MashaRakitskaya/mesto-react",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MashaRakitskaya/mesto-react.git"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
