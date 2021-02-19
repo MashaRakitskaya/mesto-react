@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/MashaRakitskaya/mesto-reactstatic/css/main.43faac74.chunk.css",
+    "main.js": "/MashaRakitskaya/mesto-reactstatic/js/main.bdd265d0.chunk.js",
+    "main.js.map": "/MashaRakitskaya/mesto-reactstatic/js/main.bdd265d0.chunk.js.map",
+    "runtime-main.js": "/MashaRakitskaya/mesto-reactstatic/js/runtime-main.3771600a.js",
+    "runtime-main.js.map": "/MashaRakitskaya/mesto-reactstatic/js/runtime-main.3771600a.js.map",
+    "static/js/2.8d785167.chunk.js": "/MashaRakitskaya/mesto-reactstatic/js/2.8d785167.chunk.js",
+    "static/js/2.8d785167.chunk.js.map": "/MashaRakitskaya/mesto-reactstatic/js/2.8d785167.chunk.js.map",
+    "static/js/3.01b8cd17.chunk.js": "/MashaRakitskaya/mesto-reactstatic/js/3.01b8cd17.chunk.js",
+    "static/js/3.01b8cd17.chunk.js.map": "/MashaRakitskaya/mesto-reactstatic/js/3.01b8cd17.chunk.js.map",
+    "index.html": "/MashaRakitskaya/mesto-reactindex.html",
+    "static/css/main.43faac74.chunk.css.map": "/MashaRakitskaya/mesto-reactstatic/css/main.43faac74.chunk.css.map",
+    "static/js/2.8d785167.chunk.js.LICENSE.txt": "/MashaRakitskaya/mesto-reactstatic/js/2.8d785167.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/MashaRakitskaya/mesto-reactstatic/media/pen.6c7bf054.svg",
+    "static/media/Vector.8724261e.svg": "/MashaRakitskaya/mesto-reactstatic/media/Vector.8724261e.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3771600a.js",
+    "static/js/2.8d785167.chunk.js",
+    "static/css/main.43faac74.chunk.css",
+    "static/js/main.bdd265d0.chunk.js"
+  ]
+}
