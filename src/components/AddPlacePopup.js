@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm.js";
 import React from 'react';
+
 function AddPlacePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
     const [name, setName] = useState('');
     const [link, setLink] = useState('');
@@ -27,28 +28,29 @@ function AddPlacePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
     };
 
     return(
-        <PopupWithForm name="add-photo"
+        <PopupWithForm
+            name="add-photo"
             title="Новое место"
             isOpen={isOpen}
             onClose={onClose}
             onOvarlayClose={onOvarlayClose}
-            onSubmit={handleSubmit}
-            children={<>
-                <label className="popup__input-label" htmlFor="place-input">
-                    <input
-                        onChange={handleChangeName}
-                        id='place-input'
-                        className="popup__input popup__input_type_place"
-                        type="text"
-                        name="place"
-                        placeholder="Название"
-                        minLength="2"
-                        value={name}
-                        maxLength="30"
-                        required 
-                    />
-                    <span id="place-input-error" className="popup__input-error"></span>
-                </label>        
+            onSubmit={handleSubmit}  
+        >
+            <label className="popup__input-label" htmlFor="place-input">
+                <input
+                    onChange={handleChangeName}
+                    id='place-input'
+                    className="popup__input popup__input_type_place"
+                    type="text"
+                    name="place"
+                    placeholder="Название"
+                    minLength="2"
+                    value={name}
+                    maxLength="30"
+                    required 
+                />
+                <span id="place-input-error" className="popup__input-error"></span>
+            </label>        
                 <label className="popup__input-label" htmlFor="url-input">
                     <input
                         onChange={handleChangeLink}
@@ -63,8 +65,7 @@ function AddPlacePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
                     <span id="url-input-error" className="popup__input-error"></span>
                 </label>
                 <button type="submit" className="popup__save popup__save_type_photo" value="Создать">Создать</button>
-            </>} 
-        />
+        </PopupWithForm>
     ) 
 }
 export default AddPlacePopup;

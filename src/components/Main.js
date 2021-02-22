@@ -1,9 +1,10 @@
 import Card from "./Card";
 import React from 'react';
 import { CurrentUserContext }  from "../contexts/CurrentUserContext";
-function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick, handleCardClick, handleLikeClick, handleCardDelete, cards}) {
 
+function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick, handleCardClick, handleLikeClick, handleCardDelete, cards}) {
     const currentUser = React.useContext(CurrentUserContext);
+    
     return (
         <main className="content">
         <section className="profile">

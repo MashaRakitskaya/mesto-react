@@ -29,24 +29,24 @@ function EditProfilePopup({isOpen, onClose, onOvarlayClose, onSubmit}) {
     };
 
     return(
-        <PopupWithForm name="edit-profile"
+        <PopupWithForm
+            name="edit-profile"
             title="Редактировать профиль"
             isOpen={isOpen}
             onClose={onClose}
             onOvarlayClose={onOvarlayClose}
             onSubmit={handleSubmit}
-            children={<>
-                <label className="popup__input-label" htmlFor="name-input">
-                    <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required value={name} onChange={handleChangeName} />
-                    <span id="name-input-error" className="popup__input-error"></span>
-                </label>
-                <label className="popup__input-label" htmlFor="occupation-input">
-                    <input id='occupation-input' className="popup__input popup__input_type_title" type="text" name="occupation" minLength="2"  maxLength="200" required value={description} onChange={handleChangeDescription} />
-                    <span id="occupation-input-error" className="popup__input-error"></span>
-                </label>
-                <button type="submit" className="popup__save popup__save_type_edit" value="Сохранить">Сохранить</button>
-            </>} 
-        />
+        >
+            <label className="popup__input-label" htmlFor="name-input">
+                <input id='name-input' className="popup__input popup__input_type_name" type="text" name="profileName" minLength="2"  maxLength="40" required value={name} onChange={handleChangeName} />
+                <span id="name-input-error" className="popup__input-error"></span>
+            </label>
+            <label className="popup__input-label" htmlFor="occupation-input">
+                <input id='occupation-input' className="popup__input popup__input_type_title" type="text" name="occupation" minLength="2"  maxLength="200" required value={description} onChange={handleChangeDescription} />
+                <span id="occupation-input-error" className="popup__input-error"></span>
+            </label>
+            <button type="submit" className="popup__save popup__save_type_edit" value="Сохранить">Сохранить</button>
+        </PopupWithForm>
     )
 
 }

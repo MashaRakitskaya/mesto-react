@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 const escape = 27;
+
 function PopupWithForm({name, title , isOpen, onClose, onOvarlayClose, onSubmit, children}) {
     useEffect(
         () => {
@@ -15,6 +16,7 @@ function PopupWithForm({name, title , isOpen, onClose, onOvarlayClose, onSubmit,
             }
         }
     )
+
     return (
         <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`} onClick={onOvarlayClose}>
                 <div className="popup__content">

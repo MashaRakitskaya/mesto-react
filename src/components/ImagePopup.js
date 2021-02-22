@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 const escape = 27;
+
 function ImagePopup({card, onClose, isOpen, onOvarlayClose}) {
     useEffect(
         () => {
